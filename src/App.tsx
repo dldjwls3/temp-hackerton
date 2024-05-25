@@ -1,6 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useWallet, WalletProvider, WalletButton } from './wallet'
+
+function TestWalletApi() {
+  const { api } = useWallet()
+
+  return (
+    <div>
+      <button onClick={() => api?.signMessage('TEST MESSAGE', null)}>Sign Test Message</button>
+    </div>
+  )
+}
 
 function App() {
   return (
@@ -19,6 +30,10 @@ function App() {
           Learn React
         </a>
       </header>
+      <WalletProvider>
+        <WalletButton />
+        <TestWalletApi />
+      </WalletProvider>
     </div>
   );
 }
